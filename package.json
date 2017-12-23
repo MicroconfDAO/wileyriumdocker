@@ -1,0 +1,10 @@
+{
+  "name": "wileyriummailer",
+  "version": "0.0.1",
+  "scripts": {
+    "mail": "node mailer.js"
+  },
+  "dependencies": {
+    "nodemailer": "^4.4.1"
+  }
+}
