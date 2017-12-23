@@ -1,3 +1,4 @@
+FROM ethereum/client-go
 FROM node:boron
 
 # Create app directory
