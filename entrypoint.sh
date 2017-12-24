@@ -16,6 +16,6 @@ then
     echo "email message = $mailMessage"
     #npm run mail -- $1 $mailMessage
 else
-    echo "account found: 3"
+    echo "account found: $3"
 fi
 
