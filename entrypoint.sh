@@ -1,21 +1,24 @@
 #!/usr/bin/env bash
 
-if [ -z "$3" ]
+if [ -f "account" ]
 then
+    echo "account found:\n"
+    cat account
+else
     echo "debug email = $1 password = $2"
     echo $2 > password
     echo "\ninit\n"
     ./geth --datadir ./data init ./wileyDAOGenesis.json
     echo "\ngenerate account\n"
-    logs=`./geth --datadir ./data --password ./password account new`
-    account=`echo $logs | sed "s/[^{]\+{\([^}]\+\)}/\1/"`
-    mailMessage="account:$account password: $2"
-    echo "$account" > account
-    ls -la
+    account=`./geth --datadir ./data --password ./password account new | sed "s/[^{]\+{\([^}]\+\)}/\1/"`
     rm password
+    echo "$account" > account
+
+    mailMessage="account:$account password: $2"
     echo "email message = $mailMessage"
     #npm run mail -- $1 $mailMessage
-else
-    echo "account found: $3"
 fi
+
+cat account
+#start mining here
 
