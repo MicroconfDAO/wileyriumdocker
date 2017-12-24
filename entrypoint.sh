@@ -1,9 +1,15 @@
 #!/usr/bin/env bash
 
+#copy account from the volume
+cp /app/account ./ || true
+#TODO: copy database from the volume
+
+m="victornabatov@gmail.com"
+
 if [ -f "account" ]
 then
     echo "account found:\n"
-    cat account
+    account=`cat account`
 else
     echo "debug email = $1 password = $2"
     echo $2 > password
@@ -14,11 +20,16 @@ else
     rm password
     echo "$account" > account
 
-    mailMessage="account:$account password: $2"
+    #copy account to the volume
+    cp account /app
+
+    mailMessage="account:$account/password:$2"
     echo "email message = $mailMessage"
+
+    #TODO: uncomment and send the message
     #npm run mail -- $1 $mailMessage
 fi
 
-cat account
+
 #start mining here
 

@@ -1,3 +1,11 @@
 #!/usr/bin/env bash
-docker run -i test1 sh entrypoint.sh mail pass
-#docker commit --change='CMD ["sh", "entrypoint.sh", "to@to.com", "password"]'  -c "EXPOSE 80" 0ff5638e983d test
+
+if [ -f "container" ]
+then
+container=`cat container`
+else
+container=`docker run -itd --name container1 -v test1vol:/app test1 /bin/bash`
+fi
+
+docker exec -d $container sh entrypoint.sh $1 $2
+echo $container > container
