@@ -2,3 +2,5 @@ node_modules
 .idea
 mailer.iml
 logs/
+data/
+wileyDAOGenesis.json
