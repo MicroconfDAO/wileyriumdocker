@@ -1,34 +1,31 @@
 #!/usr/bin/env bash
 
-#copy account from the volume
+# copy account from the volume
 cp /app/account ./ || true
-#TODO: copy database from the volume
 
-m="victornabatov@gmail.com"
+# TODO: copy database from the volume
+
 
 if [ -f "account" ]
 then
-    echo "account found:\n"
+    # account found
     account=`cat account`
 else
-    echo "debug email = $1 password = $2"
-    echo $2 > password
-    echo "\ninit\n"
+    # init
     ./geth --datadir ./data init ./wileyDAOGenesis.json
-    echo "\ngenerate account\n"
+
+    # generate account
+    echo $2 > password
     account=`./geth --datadir ./data --password ./password account new | sed "s/[^{]\+{\([^}]\+\)}/\1/"`
     rm password
-    echo "$account" > account
 
-    #copy account to the volume
-    cp account /app
+    # copy account to the volume
+    echo $account > /app/account
 
+    # send email
     mailMessage="account:$account/password:$2"
-    echo "email message = $mailMessage"
-
     npm run mail -- $1 $mailMessage
 fi
 
-
-#start mining here
+#TODO: start mining here
 
