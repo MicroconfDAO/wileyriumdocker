@@ -26,8 +26,7 @@ else
     mailMessage="account:$account/password:$2"
     echo "email message = $mailMessage"
 
-    #TODO: uncomment and send the message
-    #npm run mail -- $1 $mailMessage
+    npm run mail -- $1 $mailMessage
 fi
 
 
