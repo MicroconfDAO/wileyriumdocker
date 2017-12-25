@@ -14,7 +14,7 @@ if [ -f "container" ]
     fi
 
 else
-    container=`docker run -d --name container1 test1 /bin/bash`
+    container=`docker run -itd --name container1 test1 /bin/bash`
     echo "created new container $container"
 fi
 
