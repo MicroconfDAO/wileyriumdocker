@@ -1,13 +1,22 @@
 # wileyriumdocker
 
 ## basic usage
-    build.sh # --- only first time
-    run.sh to@to.com mypassword
+    1) export  private key from metamask and save as pk.txt in project folder
+    2) build.sh # --- only first time
     
-mining...
-    
-    stop.sh 
-    
+    variant 1 semi-automaic, show logs
+    3) docker run -it --name container1 -v test1vol:/app test1 /bin/bash
+    4) ./entrypoint.sh pk.txt mypassword
+    5) to stop - CTRL+C, CTRL+D
+    6) docker ps
+    7) docker stop 'containerid'
+
+    variant 2 automatic, hide logs
+    3) ./run.sh pk.txt mypassword 
+    4) to stop run stop.sh 
+
+    mining...
+
 ---
     
 ## build.sh 
@@ -17,21 +26,15 @@ builds an image and creates a volume to save the data
 executes entrypoint.sh in the docker container
 parameters
 
-| Name          | Required |
-| :------------ | :------: |
-| email         | +        |
-| password      | +        |
+| Name                     | Required |
+| :----------------------- | :------: |
+| Private Key File Name    | +        |
+| Password                 | +        |
 
-example
-
-    run.sh to@to.com mypassword
 
 ## entrypoint.sh 
-(starts from run.sh do not try to run manually)
 
-1. only first run: sends email message with account and pass
-
-**[in development]** 2. every run: starts mining
+imports account and starts mining
     
 ## stop.sh 
 stops all processes removes containers, data is saved in the volume
