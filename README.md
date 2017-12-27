@@ -1,6 +1,7 @@
 # wileyriumdocker
 
 ## basic usage
+    0) install docker 
     1) export  private key from metamask and save as pk.txt in project folder
     2) build.sh # --- only first time
     
