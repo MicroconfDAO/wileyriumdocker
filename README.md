@@ -7,15 +7,15 @@
     variant 1 semi-automaic, show logs
     3) docker run -it --name container1 -v test1vol:/app test1 /bin/bash
     4) ./entrypoint.sh pk.txt mypassword
+    mining in progress
     5) to stop - CTRL+C, CTRL+D
     6) docker ps
     7) docker stop 'containerid'
 
     variant 2 automatic, hide logs
     3) ./run.sh pk.txt mypassword 
+    mining in progress
     4) to stop run stop.sh 
-
-    mining...
 
 ---
     
